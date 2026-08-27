@@ -1,0 +1,106 @@
+=========================================================================
+THIRD_PARTY_CODE — provenance of included third-party code
+=========================================================================
+
+This replication package includes files from three publicly available
+replication codebases so that each folder is self-contained. The
+files are included with attribution; please cite the original papers
+when reusing them.
+
+=========================================================================
+1. Carriero, Clark, Marcellino and Mertens (CCMM)
+=========================================================================
+
+  Citation:
+    Carriero, A., Clark, T. E., Marcellino, M., and Mertens, E.
+    (2024). Addressing COVID-19 Outliers in BVARs with Stochastic
+    Volatility. Review of Economics and Statistics, 106(5),
+    1403-1417. https://doi.org/10.1162/rest_a_01213
+
+  Code repository:
+    https://github.com/elmarmertens/CCMMoutlierVAR-code
+
+  Files included UNMODIFIED:
+
+    In BVARDPM_sim/gen_data/ and BVARDPM_sim/model_SVo/:
+      mcmcVARSVobar.m, CTA.m, obarGibbsdraw.m,
+      StochVolKSCcorrsqrt.m, KSC.m, getKSC7values.m,
+      rwnoisePrecisionBasedSampler.m, betadraw.m, checkdiff.m,
+      parid.m, progressbar.m, vec.m
+
+    In BVARDPM_forecast/model_SVo/:
+      CTA.m, StochVolKSCcorrsqrt.m, getKSC7values.m,
+      rwnoisePrecisionBasedSampler.m, vec.m
+
+    In BVARDPM_forecast/model_SVO/:
+      CTA.m, StochVolOutlierKSCcorrsqrt.m, getKSC7values.m,
+      rwnoisePrecisionBasedSampler.m, vec.m
+
+  Related file:
+    crpsDraws.m (in the five BVARDPM_forecast model folders)
+    implements the CRPS estimator of Krueger, Lerch,
+    Thorarinsdottir and Gneiting (2021) following the implementation
+    in the CCMM codebase; the header comments were rewritten but the
+    computation is identical.
+
+=========================================================================
+2. Chan (2020)
+=========================================================================
+
+  Citation:
+    Chan, J. C. C. (2020). Large Bayesian VARs: A Flexible Kronecker
+    Error Covariance Structure. Journal of Business and Economic
+    Statistics, 38(1), 68-79.
+    https://doi.org/10.1080/07350015.2018.1451336
+
+  Code repository:
+    https://joshuachan.org/research.html
+
+  Files included:
+
+    sample_nu.m (UNMODIFIED)
+      In BVARDPM_sim/model_SVt/ and BVARDPM_forecast/model_SVt/.
+
+    sample_h.m
+      Two variants appear in the package. The versions in the
+      model_SVt folders (BVARDPM_sim and BVARDPM_forecast) follow
+      the original distribution. The versions in the model_DPMCSV
+      folders (BVARDPM_sim and BVARDPM_forecast) are lightly adapted
+      (vectorized precision construction, convergence tolerance, and
+      an iteration guard); the algorithm is unchanged.
+
+=========================================================================
+3. Chan, Koop and Yu (CKY)
+=========================================================================
+
+  Citation:
+    Chan, J. C. C., Koop, G., and Yu, X. (2024). Large Order-
+    Invariant Bayesian VARs with Stochastic Volatility. Journal of
+    Business and Economic Statistics, 42(2), 825-837.
+    https://doi.org/10.1080/07350015.2023.2252039
+
+  Code repository:
+    https://joshuachan.org/code/code_OISV.html
+
+  Files included (ADAPTED from the CKY replication code):
+
+    sample_SV_OISV.m, sample_SV0para_OISV.m
+      Vectorized rewrites of the CKY samplers for the individual
+      log-volatilities and their AR(1) parameters. In
+      BVARDPM_forecast/model_DPMOISV/, BVARDPM_fullsample/DPM_OIMSV/,
+      and BVARDPM_connectedness/.
+
+    get_C_OISV_FE.m, get_resid_var_OISV_FE.m
+      No-intercept adaptations of the CKY horseshoe-prior scaling
+      utilities (get_C_OISV.m, get_resid_var_OISV.m). Same three
+      folders.
+
+  In addition, the row-by-row sampling of the contemporaneous matrix
+  B0 inside the DPM-OISV and SV estimation scripts follows the
+  order-invariant construction of the CKY replication code.
+
+  The CKY code is distributed for academic use with a citation
+  request, which this package honors; please cite Chan, Koop and Yu
+  (2024) when reusing these files.
+
+=========================================================================
